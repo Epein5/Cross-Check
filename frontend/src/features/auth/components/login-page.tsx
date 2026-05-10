@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GoogleAuthButton } from "@/features/auth/components/google-auth-button";
 import { AuthHashHandler } from "@/features/auth/components/auth-hash-handler";
 
@@ -40,17 +41,16 @@ function LoginHeader() {
         <div className="flex items-center gap-3">
           <div className="h-4 w-4 rotate-45 rounded-sm bg-primary" />
           <span className="font-headline-md text-headline-md font-semibold text-inverse-surface mix-blend-difference lg:text-surface-container-lowest">
-            Data Integrity Framework
+            Cross Check
           </span>
         </div>
 
-        <button
-          aria-label="Help"
-          className="scale-95 rounded-[999px] p-2 text-on-surface transition-colors hover:bg-surface-container-low/20 active:scale-90 lg:text-surface-container-lowest"
-          type="button"
+        <span
+          aria-hidden="true"
+          className="scale-95 rounded-[999px] p-2 text-on-surface lg:text-surface-container-lowest"
         >
           <HelpIcon />
-        </button>
+        </span>
       </div>
     </header>
   );
@@ -61,13 +61,13 @@ function LoginHero() {
     <section className="relative hidden w-[55%] flex-col justify-center overflow-hidden bg-inverse-surface px-24 py-12 lg:flex">
       <div className="pointer-events-none absolute -left-10 top-0 flex select-none flex-col gap-8 opacity-[0.03]">
         <h2 className="whitespace-nowrap font-headline-lg text-[140px] leading-[0.8] tracking-tighter text-surface-container-lowest">
-          VALIDATION
+          CLAIMS
         </h2>
         <h2 className="ml-32 whitespace-nowrap font-headline-lg text-[140px] leading-[0.8] tracking-tighter text-surface-container-lowest">
-          PROTOCOL
+          EVIDENCE
         </h2>
         <h2 className="ml-64 whitespace-nowrap font-headline-lg text-[140px] leading-[0.8] tracking-tighter text-surface-container-lowest">
-          MATRIX
+          SOURCES
         </h2>
       </div>
 
@@ -76,13 +76,13 @@ function LoginHero() {
           <SecurityIcon />
         </div>
         <h1 className="mb-6 font-headline-lg text-[48px] leading-tight text-surface-container-lowest">
-          Autonomous
+          Cross-check
           <br />
-          Reliability Matrix.
+          every claim.
         </h1>
         <p className="max-w-md font-body-lg text-body-lg text-outline-variant">
-          Enter the sophisticated gateway for ensuring structural data integrity
-          through precision algorithms and neural pathways.
+          Validate statements against internal records and live sources, then
+          see exactly what is wrong and why.
         </p>
       </div>
     </section>
@@ -97,10 +97,10 @@ function LoginFormPanel() {
       <div className="relative z-10 mx-auto w-full max-w-sm lg:mx-0">
         <div className="mb-12">
           <h2 className="mb-3 font-headline-lg text-headline-lg tracking-tight text-on-surface">
-            Access Node
+            Sign in to Cross Check
           </h2>
           <p className="font-body-md text-body-md text-on-surface-variant">
-            Authenticate your identity to interface with the validation agent.
+            Access your data integrity workspace with Google.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ function LoginFormPanel() {
           <div className="h-px w-full bg-gradient-to-r from-outline-variant to-transparent" />
           <div className="flex items-center justify-between">
             <span className="font-label-mono text-label-mono uppercase tracking-[0.15em] text-secondary">
-              Secure Gateway
+              Validator Online
             </span>
             <p className="flex items-center gap-2 font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant">
               <span className="relative flex h-2 w-2">
@@ -133,21 +133,21 @@ function LoginFooter() {
     <footer className="pointer-events-none absolute bottom-0 z-50 w-full">
       <div className="pointer-events-auto mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-container-margin py-6 md:flex-row md:gap-0">
         <div className="hidden font-body-md text-body-md text-surface-container-high/60 lg:block">
-          © 2024 Data Integrity Framework. Autonomous Reliability.
+          © 2026 Cross Check. A Data Integrity Framework.
         </div>
         <div className="font-body-md text-body-md text-secondary lg:hidden">
-          © 2024 Data Integrity Framework.
+          © 2026 Cross Check.
         </div>
         <nav className="flex items-center gap-6">
-          <a className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="#">
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/privacy">
             Privacy Policy
-          </a>
-          <a className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="#">
+          </Link>
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/terms">
             Terms of Service
-          </a>
-          <a className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="#">
+          </Link>
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/security">
             Security
-          </a>
+          </Link>
         </nav>
       </div>
     </footer>

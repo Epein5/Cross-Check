@@ -8,7 +8,7 @@ export function HomePage() {
           <div className="flex items-center gap-3">
             <div className="h-4 w-4 rotate-45 rounded-sm bg-primary" />
             <span className="font-headline-md text-headline-md font-semibold text-on-surface">
-              Data Integrity Framework
+              Cross Check
             </span>
           </div>
           <div className="flex items-center gap-4">
@@ -23,14 +23,14 @@ export function HomePage() {
           <div className="login-dot-texture pointer-events-none absolute inset-0" />
           <div className="relative z-10 max-w-2xl">
             <p className="font-label-mono text-label-mono uppercase tracking-[0.15em] text-secondary">
-              Workspace Online
+              Validator Ready
             </p>
             <h1 className="mt-4 font-headline-lg text-[44px] leading-tight tracking-tight text-on-surface">
-              Welcome to the validation matrix.
+              Start validating claims.
             </h1>
             <p className="mt-5 font-body-lg text-body-lg text-on-surface-variant">
-              Your Google session is saved locally and ready to be used for
-              authenticated requests as the dashboard is built out.
+              Upload or connect data, add claims, and let Cross Check compare
+              them against trusted internal and live sources.
             </p>
           </div>
         </section>

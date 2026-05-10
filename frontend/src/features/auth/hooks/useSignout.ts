@@ -20,6 +20,7 @@ export function useSignout(redirectTo: string = "/") {
       router.replace(redirectTo);
     } catch (error) {
       console.error("Signout error:", error);
+    } finally {
       setIsLoading(false);
     }
   }, [router, redirectTo]);
