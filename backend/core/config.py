@@ -14,6 +14,8 @@ class Config(BaseSettings):
     allowed_origins: list[str] = [
         "http://localhost:3000",
         "http://localhost:3001",
+        "https://cross-check-fronten-git-da275a-aayush-gautams-projects-a353a4a0.vercel.app",
+        "https://cross-check-frontend-jhjtsrdtq-aayush-gautams-projects-a353a4a0.vercel.app",
     ]
 
 
