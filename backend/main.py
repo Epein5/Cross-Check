@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from api.v1 import routes
-from core.config import settings
+from backend.api.v1 import routes
+from backend.core.config import settings
 
 app = FastAPI(title="Cross-Check API")
 

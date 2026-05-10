@@ -3,8 +3,8 @@ from urllib.parse import urlencode
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.responses import RedirectResponse
 
-from core.config import settings
-from core.security import security, verify_bearer_token
+from backend.core.config import settings
+from backend.core.security import security, verify_bearer_token
 
 router = APIRouter()
 
