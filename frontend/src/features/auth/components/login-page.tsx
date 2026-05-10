@@ -1,6 +1,21 @@
 import Link from "next/link";
 import { GoogleAuthButton } from "@/features/auth/components/google-auth-button";
 import { AuthHashHandler } from "@/features/auth/components/auth-hash-handler";
+import { PreLoginContent } from "@/features/auth/components/pre-login-content";
+import { ScrollBelowButton } from "@/features/auth/components/scroll-below-button";
+
+function BrandMark() {
+  return (
+    <span
+      className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 border-current text-primary lg:text-surface-container-lowest"
+      aria-hidden="true"
+    >
+      <span className="h-3.5 w-3.5 rounded-full bg-current" />
+      <span className="absolute -right-1 top-1 h-2.5 w-2.5 rounded-full bg-secondary" />
+      <span className="absolute -bottom-1 left-1 h-2.5 w-2.5 rounded-full bg-secondary" />
+    </span>
+  );
+}
 
 function HelpIcon() {
   return (
@@ -39,7 +54,7 @@ function LoginHeader() {
     <header className="absolute top-0 z-50 w-full bg-transparent">
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-container-margin py-6">
         <div className="flex items-center gap-3">
-          <div className="h-4 w-4 rotate-45 rounded-sm bg-primary" />
+          <BrandMark />
           <span className="font-headline-md text-headline-md font-semibold text-inverse-surface mix-blend-difference lg:text-surface-container-lowest">
             Cross Check
           </span>
@@ -130,22 +145,19 @@ function LoginFormPanel() {
 
 function LoginFooter() {
   return (
-    <footer className="pointer-events-none absolute bottom-0 z-50 w-full">
-      <div className="pointer-events-auto mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-container-margin py-6 md:flex-row md:gap-0">
-        <div className="hidden font-body-md text-body-md text-surface-container-high/60 lg:block">
+    <footer className="relative z-50 w-full border-t border-outline-variant bg-background">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-4 px-container-margin py-6 md:flex-row md:gap-0">
+        <div className="font-body-md text-body-md text-secondary">
           © 2026 Cross Check. A Data Integrity Framework.
         </div>
-        <div className="font-body-md text-body-md text-secondary lg:hidden">
-          © 2026 Cross Check.
-        </div>
         <nav className="flex items-center gap-6">
-          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/privacy">
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary" href="/privacy">
             Privacy Policy
           </Link>
-          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/terms">
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary" href="/terms">
             Terms of Service
           </Link>
-          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary lg:text-surface-container-high/60 lg:hover:text-surface-container-lowest" href="/security">
+          <Link className="font-body-md text-body-md text-on-surface-variant transition-colors hover:text-primary" href="/security">
             Security
           </Link>
         </nav>
@@ -159,9 +171,13 @@ export function LoginPage() {
     <div className="flex min-h-screen flex-col bg-background text-on-surface antialiased selection:bg-primary selection:text-on-primary">
       <AuthHashHandler />
       <LoginHeader />
-      <main className="relative flex w-full flex-grow overflow-hidden">
-        <LoginHero />
-        <LoginFormPanel />
+      <main className="relative w-full flex-grow">
+        <section className="relative flex min-h-screen w-full overflow-hidden">
+          <LoginHero />
+          <LoginFormPanel />
+          <ScrollBelowButton />
+        </section>
+        <PreLoginContent />
       </main>
       <LoginFooter />
     </div>
