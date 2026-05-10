@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.api.v1 import auth
+from api.v1 import auth
 
 router = APIRouter()
 
