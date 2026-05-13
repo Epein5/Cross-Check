@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validon AI - Onboarding Step 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#e7e7f2",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#812800",
+                      "surface-variant": "#e1e2ec",
+                      "error": "#ba1a1a",
+                      "tertiary": "#7b2600",
+                      "surface-dim": "#d9d9e4",
+                      "secondary-fixed-dim": "#b4c6f3",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed": "#dae2ff",
+                      "primary-container": "#0052cc",
+                      "primary": "#003d9b",
+                      "surface": "#faf8ff",
+                      "on-surface-variant": "#434654",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f3f3fd",
+                      "on-primary-container": "#c4d2ff",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#faf8ff",
+                      "on-secondary-fixed-variant": "#35466c",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#ffc6b2",
+                      "on-secondary-container": "#485980",
+                      "outline": "#737685",
+                      "inverse-on-surface": "#f0f0fb",
+                      "tertiary-fixed-dim": "#ffb59b",
+                      "surface-tint": "#0c56d0",
+                      "secondary-container": "#bfd1ff",
+                      "surface-container": "#ededf8",
+                      "primary-fixed-dim": "#b2c5ff",
+                      "on-surface": "#191b23",
+                      "on-primary-fixed-variant": "#0040a2",
+                      "inverse-primary": "#b2c5ff",
+                      "surface-container-highest": "#e1e2ec",
+                      "on-primary-fixed": "#001848",
+                      "secondary-fixed": "#d8e2ff",
+                      "on-tertiary-fixed": "#380d00",
+                      "secondary": "#4c5e85",
+                      "tertiary-container": "#a33500",
+                      "inverse-surface": "#2e3038",
+                      "on-background": "#191b23",
+                      "background": "#faf8ff",
+                      "on-secondary-fixed": "#051a3e",
+                      "outline-variant": "#c3c6d6",
+                      "tertiary-fixed": "#ffdbcf"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-margin": "32px",
+                      "gutter": "24px",
+                      "base": "8px",
+                      "section-gap": "48px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopAppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin h-16 w-full fixed top-0 z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">Validon AI</span>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Help" class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button aria-label="Settings" class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHmDjskRqdx6bxp1dpvd-UAvhNMIzulcpngQ6-le5ywZRLRKxX6J1q8HXRdpqcvK5kzDYyzsLg4CTsBfsASD-uZbzu0_hIH5UGpuEYED4Qs2xdGN2OjEr8iDzhNbAVST17yZThTDUj63X6RWAuYdD1zTyS6DoTyoXqWhlJVglmA_8Hs0R7OAYIvXX2avsMJLPRsh0BmW-GSMdc8gnMnby6FZu3J00rl2cldvg4YkbPOw2hbh-EwxiT7GVKqoc23F4MAfikQXABaVU"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container-low border-r border-outline-variant fixed left-0 top-16 bottom-0 flex-col py-8 z-40 w-64">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">Onboarding</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Step 4 of 4</p>
+</div>
+<div class="flex flex-col flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person_outline</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-body-md text-body-md">Organization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">group_add</span>
+<span class="font-body-md text-body-md">Team</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-surface-container-high text-primary font-bold border-l-2 border-primary transition-transform translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="font-body-md text-body-md">Data Sources</span>
+</a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary font-body-md rounded hover:bg-primary transition-colors">
+                    Save Progress
+                </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 ml-0 md:ml-64 p-container-margin relative overflow-hidden flex flex-col">
+<!-- Background Text -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-[0.03] overflow-hidden z-0">
+<span class="font-headline-lg text-[20vw] leading-none font-bold tracking-tighter text-on-surface whitespace-nowrap select-none">INTEGRATE</span>
+</div>
+<div class="max-w-5xl mx-auto w-full relative z-10 flex-1 flex flex-col">
+<div class="mb-section-gap">
+<h1 class="font-headline-lg text-headline-lg md:text-[40px] text-on-surface mb-2">Connect Data Sources</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        Link your primary data warehouses to establish the validation pipeline. Our agent requires read-only access to execute precision audits.
+                    </p>
+</div>
+<!-- Bento Grid for Data Sources -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Snowflake -->
+<div class="bg-surface border border-outline-variant rounded-lg p-6 flex flex-col h-full hover:border-primary transition-colors duration-300 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-surface to-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-start justify-between mb-6">
+<div class="w-12 h-12 bg-[#29B5E8]/10 rounded flex items-center justify-center">
+<span class="font-headline-lg text-headline-lg font-bold text-[#29B5E8]">S</span>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant font-label-mono text-label-mono px-2 py-1 rounded">OAUTH 2.0</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Snowflake</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                Connect your Snowflake data cloud. Requires account identifier, user credentials, and active warehouse configuration.
+                            </p>
+</div>
+<div class="relative z-10 pt-4 border-t border-outline-variant">
+<button class="w-full py-2 bg-surface text-primary border border-outline-variant rounded font-body-md hover:border-primary hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">link</span>
+                                Connect
+                            </button>
+</div>
+</div>
+<!-- BigQuery -->
+<div class="bg-surface border border-outline-variant rounded-lg p-6 flex flex-col h-full hover:border-primary transition-colors duration-300 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-surface to-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-start justify-between mb-6">
+<div class="w-12 h-12 bg-[#4285F4]/10 rounded flex items-center justify-center">
+<span class="font-headline-lg text-headline-lg font-bold text-[#4285F4]">B</span>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant font-label-mono text-label-mono px-2 py-1 rounded">OAUTH 2.0</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">BigQuery</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                Integrate Google Cloud BigQuery. Authorize access via GCP service account or direct user consent flow.
+                            </p>
+</div>
+<div class="relative z-10 pt-4 border-t border-outline-variant">
+<button class="w-full py-2 bg-surface text-primary border border-outline-variant rounded font-body-md hover:border-primary hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">link</span>
+                                Connect
+                            </button>
+</div>
+</div>
+<!-- Databricks -->
+<div class="bg-surface border border-outline-variant rounded-lg p-6 flex flex-col h-full hover:border-primary transition-colors duration-300 relative group overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-surface to-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-start justify-between mb-6">
+<div class="w-12 h-12 bg-[#FF3621]/10 rounded flex items-center justify-center">
+<span class="font-headline-lg text-headline-lg font-bold text-[#FF3621]">D</span>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant font-label-mono text-label-mono px-2 py-1 rounded">TOKEN</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Databricks</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                Link Databricks workspace. Provide workspace URL and personal access token for REST API integration.
+                            </p>
+</div>
+<div class="relative z-10 pt-4 border-t border-outline-variant">
+<button class="w-full py-2 bg-surface text-primary border border-outline-variant rounded font-body-md hover:border-primary hover:bg-surface-container-low transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">key</span>
+                                Configure
+                            </button>
+</div>
+</div>
+<!-- Add Custom Source -->
+<div class="bg-surface-container-low border border-dashed border-outline-variant rounded-lg p-6 flex flex-col items-center justify-center h-full hover:bg-surface-container transition-colors duration-300 cursor-pointer min-h-[250px]">
+<div class="w-12 h-12 bg-surface border border-outline-variant rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-on-surface-variant">add</span>
+</div>
+<h3 class="font-headline-md text-[18px] text-on-surface mb-1 text-center">Add Custom Source</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-[200px]">
+                            Configure connection via standard JDBC/ODBC.
+                        </p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant flex justify-between items-center px-container-margin py-4 w-full mt-auto relative z-50">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant opacity-70">
+            © 2024 Validon Architecture. Precision in Data.
+        </span>
+<div class="flex gap-6">
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Technical Documentation</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validon AI - Invite Members</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e7f2",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "surface-variant": "#e1e2ec",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7b2600",
+                        "surface-dim": "#d9d9e4",
+                        "secondary-fixed-dim": "#b4c6f3",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0052cc",
+                        "primary": "#003d9b",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#434654",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f3f3fd",
+                        "on-primary-container": "#c4d2ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed-variant": "#35466c",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-container": "#485980",
+                        "outline": "#737685",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "surface-tint": "#0c56d0",
+                        "secondary-container": "#bfd1ff",
+                        "surface-container": "#ededf8",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-surface": "#191b23",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-container-highest": "#e1e2ec",
+                        "on-primary-fixed": "#001848",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed": "#380d00",
+                        "secondary": "#4c5e85",
+                        "tertiary-container": "#a33500",
+                        "inverse-surface": "#2e3038",
+                        "on-background": "#191b23",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed": "#051a3e",
+                        "outline-variant": "#c3c6d6",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "32px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-text {
+            font-size: 15vw;
+            line-height: 0.8;
+            color: rgba(223, 225, 230, 0.15); /* outline-variant highly transparent */
+            font-weight: 700;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-container-margin h-16 w-full fixed top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">Validon AI</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors duration-200" data-icon="help">help</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors duration-200" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdQVpwNOUkLU22ElWEm75GOUE5hRbJobxvy4UyywXfhx4QpbwJybcTIfpoAH7Pg9rEHRkEZGVQrCNBpphne0Oo7nykiC-97dFTWdzcAqkwJaV3BPyGHp4eDxhudDU1qeOtI4BKOKv2E3HvP3ufCWOFu3Y895lYEQ7NmziTnVacZb-MuI8M-H0-kRnWKwOAhTUjV5nM2Cktf87RAdUJ_nfifVAwp9owFxgN_oCPoQBGfJc47cWzGEJm0eli2mmAStc6cqfOQUxtN0w"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-16 bottom-0 flex-col py-8 z-40 w-64 bg-surface-container-low border-r border-outline-variant">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1">Onboarding</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Step 3 of 4</p>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-body-md text-body-md">Organization</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-primary font-bold border-r-2 border-primary bg-surface-container-high translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="group_add" style="font-variation-settings: 'FILL' 1;">group_add</span>
+<span class="font-body-md text-body-md">Team</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-body-md text-body-md">Data Sources</span>
+</a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full py-2 px-4 bg-surface-variant border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-container-high transition-colors font-body-md text-body-md">Save Progress</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 md:ml-64 flex flex-col relative z-10 px-container-margin py-12 md:py-section-gap max-w-[1440px] mx-auto w-full">
+<!-- Architectural Background Text -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-headline-lg bg-text tracking-tighter mix-blend-multiply z-0">
+            COLLABORATE
+        </div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter h-full">
+<!-- Left Column: Context & Input -->
+<div class="lg:col-span-5 flex flex-col justify-center">
+<div class="mb-8">
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-widest mb-2 block">Validation Agents</span>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-4">Build Your Node.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Data accuracy relies on collective oversight. Invite core engineers and analysts to join your validation workspace. They will receive secure access tokens.
+                    </p>
+</div>
+<div class="bg-surface border border-outline-variant rounded-DEFAULT p-6 shadow-sm">
+<label class="font-label-mono text-label-mono text-on-surface-variant mb-2 block">TARGET EMAIL ADDRESS</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface border border-outline-variant rounded-DEFAULT px-4 py-3 font-label-mono text-label-mono text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="analyst@domain.com" type="email"/>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-body-md text-body-md hover:bg-primary-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+                            Invite
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Invited List -->
+<div class="lg:col-span-6 lg:col-start-7 flex flex-col justify-center mt-12 lg:mt-0">
+<div class="bg-surface border border-outline-variant rounded-DEFAULT overflow-hidden">
+<div class="bg-surface-container-low px-6 py-4 border-b border-outline-variant flex justify-between items-center">
+<span class="font-label-mono text-label-mono text-on-surface-variant">PENDING INVITATIONS</span>
+<span class="bg-surface-variant text-on-surface px-2 py-1 rounded text-xs font-label-mono border border-outline-variant">3 Active</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Invited Member -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md text-sm">
+                                    S
+                                </div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">sarah.chen@validon.ai</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Sent 2 hrs ago</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label-mono text-[10px] rounded border border-outline-variant uppercase">Pending</span>
+<button class="text-outline hover:text-error transition-colors" title="Revoke">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Invited Member -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-headline-md text-sm">
+                                    M
+                                </div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">m.rodriguez@validon.ai</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Sent 5 hrs ago</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label-mono text-[10px] rounded border border-outline-variant uppercase">Pending</span>
+<button class="text-outline hover:text-error transition-colors" title="Revoke">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Invited Member -->
+<div class="px-6 py-4 flex items-center justify-between hover:bg-surface-container-lowest transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-headline-md text-sm border border-outline-variant">
+                                    E
+                                </div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">elena.kovac@validon.ai</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Sent 1 day ago</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-error/10 text-error font-label-mono text-[10px] rounded border border-error/20 uppercase">Expired</span>
+<button class="text-outline hover:text-primary transition-colors" title="Resend">
+<span class="material-symbols-outlined text-lg" data-icon="refresh">refresh</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="mt-auto pt-12 flex justify-between items-center relative z-10 border-t border-outline-variant pt-6">
+<button class="px-6 py-2 border border-outline-variant text-on-surface rounded-DEFAULT hover:bg-surface-variant transition-colors font-body-md text-body-md bg-surface">
+                Skip
+            </button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded-DEFAULT hover:bg-primary-container transition-colors font-body-md text-body-md flex items-center gap-2 shadow-sm">
+                Finish Invitation
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex justify-between items-center px-container-margin py-4 w-full mt-auto bg-surface border-t border-outline-variant md:pl-[calc(256px+32px)]">
+<div class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant">© 2024 Validon Architecture. Precision in Data.</div>
+<div class="flex gap-6">
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Technical Documentation</a>
+</div>
+</footer>
+</body></html>

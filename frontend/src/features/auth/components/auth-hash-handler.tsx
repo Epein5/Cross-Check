@@ -8,6 +8,7 @@ import {
   saveAuthSession,
 } from "@/features/auth/lib/session";
 import { ensureValidToken } from "@/features/auth/lib/session-manager";
+import { fetchOrganizations } from "@/features/onboarding/api/onboarding";
 
 type AuthHashHandlerProps = {
   redirectTo?: string;
@@ -30,14 +31,27 @@ export function AuthHashHandler({ redirectTo = "/home" }: AuthHashHandlerProps) 
             "",
             `${window.location.pathname}${window.location.search}`,
           );
-          router.replace(redirectTo);
-          return;
+        } else {
+          const existingSession = await ensureValidToken();
+          if (!existingSession) {
+             return;
+          }
         }
 
-        const existingSession = await ensureValidToken();
-
-        if (isMounted && existingSession) {
-          router.replace(redirectTo);
+        // We have a valid token, now check if onboarding is needed
+        if (isMounted) {
+          try {
+            const orgs = await fetchOrganizations();
+            if (orgs.length === 0) {
+              router.replace("/onboarding");
+            } else {
+              router.replace(redirectTo);
+            }
+          } catch (orgError) {
+             console.error("Failed to fetch orgs:", orgError);
+             // On error, try to go to the app, but they might need to onboard
+             router.replace("/onboarding");
+          }
         }
       } catch (error) {
         console.error("Failed to complete auth callback:", error);
