@@ -3,19 +3,7 @@ import { GoogleAuthButton } from "@/features/auth/components/google-auth-button"
 import { AuthHashHandler } from "@/features/auth/components/auth-hash-handler";
 import { PreLoginContent } from "@/features/auth/components/pre-login-content";
 import { ScrollBelowButton } from "@/features/auth/components/scroll-below-button";
-
-function BrandMark() {
-  return (
-    <span
-      className="relative flex h-9 w-9 items-center justify-center rounded-full border-2 border-current text-primary lg:text-surface-container-lowest"
-      aria-hidden="true"
-    >
-      <span className="h-3.5 w-3.5 rounded-full bg-current" />
-      <span className="absolute -right-1 top-1 h-2.5 w-2.5 rounded-full bg-secondary" />
-      <span className="absolute -bottom-1 left-1 h-2.5 w-2.5 rounded-full bg-secondary" />
-    </span>
-  );
-}
+import { BrandMark } from "@/components/ui/brand-mark";
 
 function HelpIcon() {
   return (
@@ -54,7 +42,9 @@ function LoginHeader() {
     <header className="absolute top-0 z-50 w-full bg-transparent">
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-container-margin py-6">
         <div className="flex items-center gap-3">
-          <BrandMark />
+          <div className="text-primary lg:text-surface-container-lowest">
+            <BrandMark />
+          </div>
           <span className="font-headline-md text-headline-md font-semibold text-inverse-surface mix-blend-difference lg:text-surface-container-lowest">
             Cross Check
           </span>

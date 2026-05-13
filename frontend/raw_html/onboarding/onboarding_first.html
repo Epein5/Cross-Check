@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validon AI - Onboarding Complete</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e7e7f2",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#812800",
+                    "surface-variant": "#e1e2ec",
+                    "error": "#ba1a1a",
+                    "tertiary": "#7b2600",
+                    "surface-dim": "#d9d9e4",
+                    "secondary-fixed-dim": "#b4c6f3",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#dae2ff",
+                    "primary-container": "#0052cc",
+                    "primary": "#003d9b",
+                    "surface": "#faf8ff",
+                    "on-surface-variant": "#434654",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f3f3fd",
+                    "on-primary-container": "#c4d2ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#faf8ff",
+                    "on-secondary-fixed-variant": "#35466c",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#ffc6b2",
+                    "on-secondary-container": "#485980",
+                    "outline": "#737685",
+                    "inverse-on-surface": "#f0f0fb",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "surface-tint": "#0c56d0",
+                    "secondary-container": "#bfd1ff",
+                    "surface-container": "#ededf8",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "on-surface": "#191b23",
+                    "on-primary-fixed-variant": "#0040a2",
+                    "inverse-primary": "#b2c5ff",
+                    "surface-container-highest": "#e1e2ec",
+                    "on-primary-fixed": "#001848",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed": "#380d00",
+                    "secondary": "#4c5e85",
+                    "tertiary-container": "#a33500",
+                    "inverse-surface": "#2e3038",
+                    "on-background": "#191b23",
+                    "background": "#faf8ff",
+                    "on-secondary-fixed": "#051a3e",
+                    "outline-variant": "#c3c6d6",
+                    "tertiary-fixed": "#ffdbcf"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-margin": "32px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "section-gap": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(195, 198, 214, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(195, 198, 214, 0.2) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased overflow-hidden relative">
+<!-- Architectural Grid Background Overlay -->
+<div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+<!-- Giant Background Text 'VALIDATE' -->
+<div aria-hidden="true" class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-0 select-none">
+<span class="font-headline-lg text-[18vw] leading-none text-surface-variant opacity-40 font-bold tracking-tighter whitespace-nowrap">
+            VALIDATE
+        </span>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex-1 flex items-center justify-center px-container-margin py-section-gap w-full">
+<!-- High-Impact Glassmorphic/Minimalist Card -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-sm border border-outline-variant p-12 md:p-20 max-w-3xl w-full flex flex-col items-center text-center relative shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
+<!-- Technical Corner Accents -->
+<div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-outline-variant -translate-x-[1px] -translate-y-[1px]"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t border-r border-outline-variant translate-x-[1px] -translate-y-[1px]"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-outline-variant -translate-x-[1px] translate-y-[1px]"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-outline-variant translate-x-[1px] translate-y-[1px]"></div>
+<!-- Success Indicator -->
+<div class="mb-8 relative flex items-center justify-center">
+<div class="absolute inset-0 bg-primary-fixed rounded-full blur-md opacity-50"></div>
+<div class="relative w-16 h-16 bg-surface-container-lowest border border-outline-variant rounded-full flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">
+                        check_circle
+                    </span>
+</div>
+</div>
+<!-- Headers -->
+<h1 class="font-label-mono text-label-mono text-primary tracking-widest uppercase mb-4">
+                System Initialization Complete
+            </h1>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">
+                Welcome to Validon AI
+            </h2>
+<!-- Mission Statement -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed mb-12">
+                An AI-powered audit validation platform that automatically reviews and verifies business documents like invoices, expense reports, audits, and compliance files with unparalleled precision and autonomous reliability.
+            </p>
+<!-- Primary Action -->
+<a class="group relative inline-flex items-center justify-center px-8 py-4 bg-primary-container text-on-primary font-label-mono text-label-mono uppercase tracking-widest overflow-hidden transition-all duration-300 hover:bg-primary border border-transparent" href="#">
+<span class="relative z-10 flex items-center gap-3">
+                    Enter Workbench
+                    <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-300">
+                        arrow_forward
+                    </span>
+</span>
+<!-- Subtle hover glow effect inside button -->
+<div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+</a>
+<!-- Secondary Info -->
+<div class="mt-8 flex items-center gap-2 text-on-surface-variant opacity-70">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span class="font-label-mono text-label-mono text-[10px]">End-to-End Encryption Enabled</span>
+</div>
+</div>
+</main>
+</body></html>

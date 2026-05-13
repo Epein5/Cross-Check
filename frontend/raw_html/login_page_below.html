@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Integrity Framework - AI-Native Validation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#44403d",
+                    "surface-dim": "#dadadd",
+                    "surface-bright": "#f9f9fc",
+                    "surface-tint": "#26657c",
+                    "on-tertiary-fixed": "#1e1b18",
+                    "primary-fixed": "#baeaff",
+                    "tertiary-container": "#5c5754",
+                    "surface": "#f9f9fc",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#d5cdc9",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e2e2e5",
+                    "inverse-primary": "#94cfe8",
+                    "secondary-fixed": "#d1e4fb",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "outline-variant": "#c0c8cc",
+                    "outline": "#70787d",
+                    "primary-container": "#1d5f75",
+                    "surface-container": "#eeedf0",
+                    "secondary": "#4e6073",
+                    "surface-container-high": "#e8e8eb",
+                    "primary": "#00475a",
+                    "background": "#f9f9fc",
+                    "on-surface": "#1a1c1e",
+                    "on-secondary-fixed-variant": "#36485b",
+                    "surface-container-low": "#f4f3f6",
+                    "on-secondary-container": "#54667a",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004d62",
+                    "secondary-container": "#d1e4fb",
+                    "on-background": "#1a1c1e",
+                    "tertiary-fixed": "#e9e1dc",
+                    "tertiary-fixed-dim": "#cdc5c1",
+                    "inverse-on-surface": "#f1f0f3",
+                    "on-primary-fixed": "#001f29",
+                    "on-primary-container": "#9cd7f1",
+                    "on-secondary-fixed": "#091d2e",
+                    "on-tertiary-fixed-variant": "#4b4643",
+                    "on-surface-variant": "#40484c",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#94cfe8",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2f3033"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-page": "5vw",
+                    "lg": "64px",
+                    "gutter": "24px",
+                    "xs": "8px",
+                    "md": "32px",
+                    "unit": "4px",
+                    "sm": "16px",
+                    "xl": "128px"
+            },
+            "fontFamily": {
+                    "label-mono": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg-mobile": [
+                            "Hanken Grotesk"
+                    ],
+                    "display-xl": [
+                            "Hanken Grotesk"
+                    ],
+                    "data-point": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-std": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-large": [
+                            "Hanken Grotesk"
+                    ],
+                    "headline-lg": [
+                            "Hanken Grotesk"
+                    ]
+            },
+            "fontSize": {
+                    "label-mono": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "40px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "300"
+                            }
+                    ],
+                    "display-xl": [
+                            "120px",
+                            {
+                                    "lineHeight": "110px",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "200"
+                            }
+                    ],
+                    "data-point": [
+                            "48px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "200"
+                            }
+                    ],
+                    "body-std": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-large": [
+                            "20px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "64px",
+                            {
+                                    "lineHeight": "72px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "300"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9fc;
+            overflow-x: hidden;
+        }
+        
+        .architectural-line-vertical {
+            width: 1px;
+            background-color: #c0c8cc;
+            position: absolute;
+            top: -100px;
+            bottom: -100px;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .architectural-line-horizontal {
+            height: 1px;
+            background-color: #c0c8cc;
+            position: absolute;
+            left: -100px;
+            right: -100px;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .bg-faint-typography {
+            position: absolute;
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(226, 226, 229, 0.4);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
+            user-select: none;
+        }
+        
+        .bg-faint-typography.pos-1 {
+            top: 5%;
+            left: -5%;
+            transform: rotate(-90deg) translateY(50%);
+            transform-origin: left top;
+        }
+
+        .bg-faint-typography.pos-2 {
+            bottom: 5%;
+            right: -5%;
+        }
+        
+        .bg-faint-typography.pos-3 {
+            top: 40%;
+            left: 20%;
+            opacity: 0.2;
+        }
+
+        .node-card {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(244,243,246,0.6) 100%);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid #70787d;
+            border-top: 1px solid rgba(192, 200, 204, 0.5);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .node-card::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -4px;
+            width: 7px;
+            height: 7px;
+            background-color: #1d5f75;
+            border-radius: 50%;
+        }
+
+        .node-card:hover {
+            border-left-color: #1d5f75;
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(244,243,246,0.9) 100%);
+        }
+
+        .node-card:hover::before {
+            background-color: #00475a;
+            transform: scale(1.5);
+            transition: transform 0.3s ease;
+        }
+
+        .brutalist-button {
+            display: inline-block;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #1a1c1e;
+            position: relative;
+            padding-bottom: 4px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .brutalist-button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #1d5f75;
+            transition: height 0.2s ease, z-index 0s;
+            z-index: -1;
+        }
+
+        .brutalist-button:hover::after {
+            height: 100%;
+            opacity: 0.2;
+        }
+
+        .stippling-pattern {
+            background-image: radial-gradient(#1d5f75 1px, transparent 1px);
+            background-size: 8px 8px;
+            opacity: 0.1;
+        }
+
+        .primary-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #00475a;
+            color: #ffffff;
+            padding: 16px 32px;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border: 1px solid #00475a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .primary-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .primary-cta:hover::before {
+            left: 0;
+        }
+
+        .secondary-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: #1a1c1e;
+            padding: 16px 32px;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border: 1px solid #70787d;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-cta:hover {
+            border-color: #1a1c1e;
+            background-color: rgba(26, 28, 30, 0.05);
+        }
+
+        .terminal-window {
+            background-color: #1a1c1e;
+            border-radius: 8px;
+            padding: 24px;
+            font-family: monospace;
+            color: #9cd7f1;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .terminal-window::before {
+            content: 'TERMINAL';
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background-color: #f9f9fc;
+            color: #1a1c1e;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            border: 1px solid #1a1c1e;
+        }
+    </style>
+</head>
+<body class="bg-background dark:bg-background text-on-surface font-body-std antialiased min-h-screen flex flex-col relative">
+<!-- Architectural Lines Background (Global) -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="architectural-line-vertical" style="left: 15%;"></div>
+<div class="architectural-line-vertical" style="left: 75%;"></div>
+<div class="architectural-line-horizontal" style="top: 25%;"></div>
+<div class="architectural-line-horizontal" style="top: 80%;"></div>
+</div>
+<!-- TopAppBar -->
+<header class="bg-background/90 backdrop-blur-md border-b border-outline-variant w-full z-50 sticky top-0">
+<div class="flex justify-between items-center w-full px-container-margin py-4 max-w-[1440px] mx-auto">
+<div class="font-headline-md text-headline-md font-semibold text-on-surface tracking-tight">
+                Data Integrity Framework
+            </div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-2 rounded scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow relative w-full flex flex-col">
+<!-- Hero Section -->
+<section class="relative z-10 w-full px-container-margin py-32 max-w-[1440px] mx-auto min-h-[80vh] flex flex-col justify-center">
+<div class="bg-faint-typography pos-1 font-display-xl">TRUTH</div>
+<div class="bg-faint-typography pos-3 font-display-xl hidden md:block" style="font-size: 10vw;">INTEGRITY</div>
+<div class="grid grid-cols-12 gap-gutter relative">
+<div class="col-span-12 md:col-span-10 lg:col-span-8 pl-md border-l border-primary-container relative z-20">
+<div class="absolute top-0 -left-[4px] w-2 h-16 bg-primary-container"></div>
+<div class="font-label-mono text-label-mono text-primary-container mb-6 tracking-widest uppercase">Autonomous Reliability</div>
+<h1 class="font-headline-lg text-[64px] leading-[72px] lg:text-[96px] lg:leading-[100px] font-light text-on-surface mb-8 tracking-tight">
+                Every Claim.<br/>Every Source.<br/><span class="font-semibold text-primary">Verified.</span>
+</h1>
+<p class="font-body-large text-[24px] leading-[36px] text-on-surface-variant max-w-2xl mb-12">
+                The AI-native validation engine that tells you exactly what's wrong, and why. High-fidelity transparency for structural data integrity.
+             </p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="primary-cta">
+                     Initialize Your Node
+                     <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+</button>
+<button class="secondary-cta">
+                     Read the Whitepaper
+                 </button>
+</div>
+</div>
+<!-- Abstract Hero Decorative -->
+<div class="hidden lg:block col-span-4 relative h-full">
+<div class="absolute right-0 top-0 w-64 h-64 border border-outline-variant rounded-full flex items-center justify-center opacity-50">
+<div class="w-48 h-48 border border-outline-variant rounded-full flex items-center justify-center">
+<div class="w-32 h-32 border border-primary-container rounded-full bg-surface-variant/20 backdrop-blur-sm"></div>
+</div>
+</div>
+<div class="absolute right-32 top-32 stippling-pattern w-48 h-48"></div>
+</div>
+</div>
+</section>
+<!-- The Agentic Advantage Section -->
+<section class="relative z-10 w-full px-container-margin py-24 max-w-[1440px] mx-auto bg-surface-container-low border-y border-outline-variant">
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 lg:col-span-5 mb-12 lg:mb-0 flex flex-col justify-center">
+<h2 class="font-headline-lg-mobile text-[40px] leading-[48px] text-on-surface mb-6">The Agentic Advantage</h2>
+<p class="font-body-std text-on-surface-variant mb-6 text-lg">
+                Our "Chain-of-Thought" ingestion process dynamically maps complex schema relationships across your entire data ecosystem.
+            </p>
+<p class="font-body-std text-on-surface-variant mb-8 text-lg">
+                Utilizing advanced RAG-based validation, the engine cross-references structural anomalies against established truth definitions in real-time, preventing silent failures.
+            </p>
+<ul class="space-y-4 font-label-mono text-sm tracking-wide text-secondary">
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary"></div> Continuous Schema Monitoring
+                </li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary"></div> Semantic Anomaly Detection
+                </li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-primary"></div> Automated Remediation Paths
+                </li>
+</ul>
+</div>
+<div class="col-span-12 lg:col-span-6 lg:col-start-7 relative">
+<div class="terminal-window h-full min-h-[300px]">
+<div class="mb-4 text-outline">&gt; Initializing validation sequence...</div>
+<div class="mb-2 text-on-primary-container">&gt; Connecting to sources: [Snowflake, BigQuery, Databricks]</div>
+<div class="mb-2">&gt; Extracting schemas... <span class="text-green-400">SUCCESS</span></div>
+<div class="mb-2">&gt; Building semantic graph... <span class="text-green-400">SUCCESS</span></div>
+<div class="mb-4">&gt; Running Chain-of-Thought anomaly detection...</div>
+<div class="pl-4 border-l border-outline-variant mb-4 opacity-80">
+<span class="text-yellow-400">WARN:</span> Structural mismatch detected in 'user_events' table.<br/>
+                    Expected: JSON payload. Found: STRING.<br/>
+                    Cross-referencing RAG index...<br/>
+                    Root cause identified: Upstream schema migration in BigQuery PR-892.
+                </div>
+<div><span class="animate-pulse">_</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Connection Nodes Grid (Refactored existing section) -->
+<section class="relative z-10 w-full px-container-margin py-32 max-w-[1440px] mx-auto">
+<div class="bg-faint-typography pos-2 font-display-xl">PROTOCOL</div>
+<div class="grid grid-cols-12 gap-gutter mb-xl relative">
+<div class="col-span-12 md:col-span-8 lg:col-span-6 pl-md border-l border-primary-container relative">
+<div class="absolute top-0 -left-[4px] w-2 h-16 bg-primary-container"></div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-sm tracking-tight leading-tight">
+                Connect Data Sources
+             </h2>
+<p class="font-body-large text-body-large text-on-surface-variant">
+                Select your data node to begin the validation protocol. Ensure target environments are provisioned.
+             </p>
+</div>
+</div>
+<!-- Abstract connecting lines for nodes -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+<path d="M 20% 10% L 35% 10% L 35% 30% L 50% 30%" fill="none" stroke="#70787d" stroke-dasharray="4 4" stroke-width="0.5"></path>
+<path d="M 70% 10% L 60% 10% L 60% 60% L 50% 60%" fill="none" stroke="#70787d" stroke-width="0.5"></path>
+<circle cx="35%" cy="10%" fill="#1d5f75" r="3"></circle>
+<circle cx="60%" cy="60%" fill="#1d5f75" r="3"></circle>
+</svg>
+<div class="grid grid-cols-12 gap-y-xl md:gap-y-0 relative">
+<!-- Snowflake Node -->
+<div class="col-span-12 md:col-span-5 md:col-start-2 relative mt-0 md:mt-12">
+<div class="node-card">
+<div class="flex items-start justify-between mb-8">
+<div>
+<div class="font-label-mono text-label-mono text-primary-container mb-2">NODE 01</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Snowflake</h3>
+</div>
+<span class="material-symbols-outlined text-primary-container text-4xl" style="font-variation-settings: 'FILL' 0;">cloud_queue</span>
+</div>
+<div class="mb-8 font-body-std text-body-std text-on-surface-variant">
+                    Establish a secure, high-throughput connection to your Snowflake data warehouse. Requires active compute warehouse credentials.
+                </div>
+<div class="mt-auto">
+<button class="brutalist-button">Initialize Connection</button>
+</div>
+</div>
+</div>
+<div class="hidden md:block col-span-1"></div>
+<!-- BigQuery Node -->
+<div class="col-span-12 md:col-span-4 md:col-start-8 relative mt-0 md:-mt-12">
+<div class="node-card border-l-2">
+<div class="flex items-start justify-between mb-8">
+<div>
+<div class="font-label-mono text-label-mono text-secondary mb-2">NODE 02</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">BigQuery</h3>
+</div>
+<span class="material-symbols-outlined text-secondary text-4xl" style="font-variation-settings: 'FILL' 0;">dataset</span>
+</div>
+<div class="mb-8 font-body-std text-body-std text-on-surface-variant">
+                    Link directly to Google Cloud projects. Service account authentication mandated for automated integrity checks.
+                </div>
+<div class="mt-auto">
+<button class="brutalist-button" style="color: #4e6073;">Configure Auth</button>
+</div>
+</div>
+</div>
+<!-- Databricks Node -->
+<div class="col-span-12 md:col-span-6 md:col-start-4 relative mt-12 md:mt-24">
+<div class="absolute -left-24 top-1/2 w-24 h-px bg-outline-variant hidden md:block"></div>
+<div class="node-card">
+<div class="flex items-start justify-between mb-8">
+<div>
+<div class="font-label-mono text-label-mono text-tertiary-container mb-2">NODE 03</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Databricks</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary-container text-4xl" style="font-variation-settings: 'FILL' 0;">data_object</span>
+</div>
+<div class="mb-8 font-body-std text-body-std text-on-surface-variant">
+                    Mount Unity Catalog volumes or workspace clusters. Personal Access Token (PAT) required for schema extraction.
+                </div>
+<div class="mt-auto">
+<button class="brutalist-button" style="color: #5c5754;">Generate Token Link</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Discrepancy Transparency Section -->
+<section class="relative z-10 w-full px-container-margin py-32 max-w-[1440px] mx-auto border-t border-outline-variant">
+<div class="grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 lg:col-span-5 order-2 lg:order-1 relative">
+<div class="absolute inset-0 bg-surface-container-high transform -skew-y-3 z-0"></div>
+<div class="relative z-10 p-8 grid gap-6">
+<!-- Mockup Card 1 (Error) -->
+<div class="bg-surface border border-error-container p-6 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-mono text-error">DISCREPANCY DETECTED</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="font-body-std mb-2 text-on-surface">Row count variance in table <code class="bg-surface-variant px-1 rounded">transactions_daily</code></div>
+<div class="text-sm text-on-surface-variant mb-4">Expected: 145,230 | Actual: 142,100</div>
+</div>
+<!-- Mockup Card 2 (Explanation) -->
+<div class="bg-surface border border-primary-container p-6 shadow-md transform translate-x-4">
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-mono text-primary">AGENT COUNTERFACTUAL</span>
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<div class="font-body-std mb-2 text-on-surface">Missing rows correlate directly with NULL values in <code class="bg-surface-variant px-1 rounded">region_id</code>.</div>
+<div class="text-sm text-on-surface-variant border-l-2 border-primary pl-3">
+                        "If the upstream API had not dropped the region_id field during the 02:00 UTC deployment, these rows would have passed the ingestion filter."
+                    </div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-6 lg:col-start-7 order-1 lg:order-2 mb-12 lg:mb-0">
+<div class="pl-md border-l border-primary-container mb-8">
+<h2 class="font-headline-lg-mobile text-[40px] leading-[48px] text-on-surface mb-4">Discrepancy Transparency</h2>
+<p class="font-label-mono text-secondary tracking-widest uppercase">The What and The Why</p>
+</div>
+<p class="font-body-large text-on-surface-variant mb-6">
+                Detecting an error is only half the battle. Our framework provides rigorous, counterfactual explanations for every data anomaly.
+            </p>
+<p class="font-body-std text-on-surface-variant">
+                Stop guessing why pipelines fail. The engine synthesizes lineage graphs, recent code commits, and statistical baselines to present the exact root cause alongside the discrepancy report.
+            </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background border-t border-outline-variant w-full mt-auto relative z-50">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-container-margin py-gutter max-w-[1440px] mx-auto">
+<div class="font-body-md text-body-md text-secondary opacity-80 hover:opacity-100 transition-opacity mb-4 md:mb-0">
+                © 2024 Data Integrity Framework. Autonomous Reliability.
+            </div>
+<div class="flex flex-wrap gap-sm md:gap-gutter">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Security Architecture</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validon AI - Onboarding Step 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e7e7f2",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#812800",
+                        "surface-variant": "#e1e2ec",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7b2600",
+                        "surface-dim": "#d9d9e4",
+                        "secondary-fixed-dim": "#b4c6f3",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0052cc",
+                        "primary": "#003d9b",
+                        "surface": "#faf8ff",
+                        "on-surface-variant": "#434654",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f3f3fd",
+                        "on-primary-container": "#c4d2ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "on-secondary-fixed-variant": "#35466c",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffc6b2",
+                        "on-secondary-container": "#485980",
+                        "outline": "#737685",
+                        "inverse-on-surface": "#f0f0fb",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "surface-tint": "#0c56d0",
+                        "secondary-container": "#bfd1ff",
+                        "surface-container": "#ededf8",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-surface": "#191b23",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "inverse-primary": "#b2c5ff",
+                        "surface-container-highest": "#e1e2ec",
+                        "on-primary-fixed": "#001848",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed": "#380d00",
+                        "secondary": "#4c5e85",
+                        "tertiary-container": "#a33500",
+                        "inverse-surface": "#2e3038",
+                        "on-background": "#191b23",
+                        "background": "#faf8ff",
+                        "on-secondary-fixed": "#051a3e",
+                        "outline-variant": "#c3c6d6",
+                        "tertiary-fixed": "#ffdbcf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "32px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-mono": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #DFE1E6 1px, transparent 1px), linear-gradient(to bottom, #DFE1E6 1px, transparent 1px);
+        }
+        .text-giant-bg {
+            font-size: 15vw;
+            line-height: 0.8;
+            letter-spacing: -0.05em;
+            color: rgba(223, 225, 230, 0.3);
+            position: absolute;
+            top: 10%;
+            left: -5%;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased relative overflow-hidden">
+<!-- TopAppBar -->
+<nav class="flex justify-between items-center px-container-margin h-16 w-full fixed top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant flat no shadows">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-on-surface">Validon AI</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors duration-200" data-icon="help">help</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors duration-200" data-icon="settings">settings</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 bottom-0 flex flex-col py-8 z-40 bg-surface-container-low border-r border-outline-variant flat no shadows docked left-0 h-full w-64 hidden md:flex">
+<div class="px-6 mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">Onboarding</h2>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-2 uppercase tracking-widest">Step 1 of 4</p>
+</div>
+<nav class="flex flex-col gap-2 px-4 flex-1">
+<!-- Profile Tab (Active) -->
+<div class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT bg-surface-container-highest text-primary font-bold border-r-2 border-primary translate-x-1 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+<span class="font-body-md text-body-md">Profile</span>
+</div>
+<!-- Organization Tab (Inactive) -->
+<div class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-body-md text-body-md">Organization</span>
+</div>
+<!-- Team Tab (Inactive) -->
+<div class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="group_add">group_add</span>
+<span class="font-body-md text-body-md">Team</span>
+</div>
+<!-- Data Sources Tab (Inactive) -->
+<div class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-body-md text-body-md">Data Sources</span>
+</div>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 px-4 bg-transparent border border-outline-variant text-on-surface font-body-md text-body-md hover:border-primary hover:text-primary transition-colors duration-200">Save Progress</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 md:ml-64 relative z-10 grid-bg min-h-[calc(100vh-64px-60px)] flex items-center justify-center p-6 md:p-container-margin">
+<!-- Giant Background Text -->
+<div class="text-giant-bg select-none">IDENTITY</div>
+<!-- Onboarding Form Container -->
+<div class="w-full max-w-2xl bg-surface border border-outline-variant rounded-none relative z-20 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
+<!-- Header -->
+<div class="bg-surface-container-low px-8 py-6 border-b border-outline-variant">
+<h1 class="font-headline-lg text-headline-lg text-on-surface md:block hidden">Establish User Profile</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:hidden block">Establish User Profile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Provide core credentials to initialize your agent workspace.</p>
+</div>
+<!-- Form Body -->
+<div class="px-8 py-8 flex flex-col gap-section-gap">
+<!-- Avatar Upload Section -->
+<div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="w-24 h-24 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center overflow-hidden flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl" data-icon="person">person</span>
+</div>
+<div class="flex flex-col gap-3">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase">Avatar Designation</label>
+<div class="flex gap-4">
+<button class="px-4 py-2 bg-primary-container text-on-primary border border-transparent font-body-md text-body-md hover:bg-primary transition-colors">Upload Image</button>
+<button class="px-4 py-2 bg-transparent border border-outline-variant text-on-surface font-body-md text-body-md hover:border-on-surface transition-colors">Remove</button>
+</div>
+<p class="font-body-md text-body-md text-outline text-xs">JPEG or PNG under 2MB. Square ratio preferred.</p>
+</div>
+</div>
+<!-- Input Fields -->
+<div class="flex flex-col gap-6">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase" for="fullName">Primary Identity (Full Name)</label>
+<input class="w-full bg-surface border border-outline-variant px-4 py-3 font-label-mono text-label-mono text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="fullName" placeholder="e.g. Dr. Aris Thorne" type="text"/>
+</div>
+<!-- Email Address -->
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase" for="emailAddress">Comm Channel (Email)</label>
+<input class="w-full bg-surface border border-outline-variant px-4 py-3 font-label-mono text-label-mono text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="emailAddress" placeholder="user@validon.ai" type="email"/>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-8 py-6 border-t border-outline-variant flex justify-end">
+<button class="px-8 py-3 bg-primary-container text-on-primary font-headline-md text-body-lg flex items-center gap-2 hover:bg-primary transition-colors group">
+                    Continue
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex justify-between items-center px-container-margin py-4 w-full mt-auto bg-surface border-t border-outline-variant z-50 md:ml-64 w-[calc(100%-256px)] hidden md:flex">
+<span class="font-label-mono text-label-mono text-on-surface-variant opacity-70">© 2024 Validon Architecture. Precision in Data.</span>
+<div class="flex gap-6">
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-label-mono text-label-mono text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity" href="#">Technical Documentation</a>
+</div>
+</footer>
+</body></html>

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from api.v1 import auth
+from api.v1 import auth, integrations, organizations, profiles
 
 router = APIRouter()
 
@@ -11,3 +11,6 @@ def read_root() -> dict[str, str]:
 
 
 router.include_router(auth.router, prefix="/auth")
+router.include_router(organizations.router)
+router.include_router(integrations.router)
+router.include_router(profiles.router)
