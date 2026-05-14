@@ -6,16 +6,11 @@ import {
   verifyIntegration,
 } from "@/features/onboarding/api/onboarding";
 
-type Platform = "bigquery" | "snowflake" | "databricks";
+type Platform = "databricks";
 
 type PlatformState = {
   status: "idle" | "connecting" | "polling" | "connected" | "error";
   connectionId: string | null;
-};
-
-type CredentialForm = {
-  platform: Platform;
-  fields: { name: string; label: string; type: string; placeholder: string }[];
 };
 
 type Step4Props = {
@@ -25,48 +20,18 @@ type Step4Props = {
 
 const PLATFORMS: { key: Platform; name: string; label: string; color: string; description: string }[] = [
   {
-    key: "snowflake",
-    name: "Snowflake",
-    label: "OAUTH 2.0",
-    color: "#29B5E8",
-    description: "Connect your Snowflake data cloud. Requires account identifier and active warehouse configuration.",
-  },
-  {
-    key: "bigquery",
-    name: "BigQuery",
-    label: "OAUTH 2.0",
-    color: "#4285F4",
-    description: "Integrate Google Cloud BigQuery. Authorize access via GCP service account or direct user consent flow.",
-  },
-  {
     key: "databricks",
     name: "Databricks",
-    label: "TOKEN",
+    label: "OAUTH 2.0",
     color: "#FF3621",
-    description: "Link Databricks workspace. Provide workspace URL and personal access token.",
+    description: "Connect your Databricks workspace via OAuth.",
   },
 ];
 
-const CREDENTIAL_FORMS: Record<string, CredentialForm> = {
-  databricks: {
-    platform: "databricks",
-    fields: [
-      { name: "workspace_url", label: "Workspace URL", type: "text", placeholder: "https://dbc-abc123.cloud.databricks.com" },
-      { name: "token", label: "Access Token", type: "password", placeholder: "dapi••••••••" },
-    ],
-  },
-};
-
 export function Step4DataSources({ onNext, orgId }: Step4Props) {
   const [platforms, setPlatforms] = useState<Record<Platform, PlatformState>>({
-    bigquery: { status: "idle", connectionId: null },
-    snowflake: { status: "idle", connectionId: null },
     databricks: { status: "idle", connectionId: null },
   });
-
-  const [modal, setModal] = useState<CredentialForm | null>(null);
-  const [formValues, setFormValues] = useState<Record<string, string>>({});
-  const [formError, setFormError] = useState<string | null>(null);
 
   const popupRef = useRef<Window | null>(null);
   const pollTimers = useRef<Record<string, ReturnType<typeof setInterval>>>({});
@@ -154,58 +119,6 @@ export function Step4DataSources({ onNext, orgId }: Step4Props) {
     [orgId, startPolling]
   );
 
-  const handleConnectClick = useCallback(
-    (platform: Platform) => {
-      if (platform === "databricks") {
-        setFormValues({});
-        setFormError(null);
-        setModal(CREDENTIAL_FORMS.databricks);
-      } else {
-        initiateOAuthFlow(platform);
-      }
-    },
-    [initiateOAuthFlow]
-  );
-
-  const handleCredentialSubmit = useCallback(async () => {
-    if (!orgId || !modal) return;
-
-    setFormError(null);
-    const platform = modal.platform;
-
-    setPlatforms((prev) => ({
-      ...prev,
-      [platform]: { status: "connecting", connectionId: null },
-    }));
-
-    try {
-      const result = await connectIntegration(orgId, platform, formValues);
-
-      if (result.status === "connected") {
-        setPlatforms((prev) => ({
-          ...prev,
-          [platform]: {
-            status: "connected",
-            connectionId: result.connection_id,
-          },
-        }));
-        setModal(null);
-      } else {
-        setPlatforms((prev) => ({
-          ...prev,
-          [platform]: { status: "error", connectionId: null },
-        }));
-        setFormError("Unexpected response from server");
-      }
-    } catch {
-      setPlatforms((prev) => ({
-        ...prev,
-        [platform]: { status: "error", connectionId: null },
-      }));
-      setFormError("Failed to connect. Check your credentials.");
-    }
-  }, [orgId, modal, formValues]);
-
   useEffect(() => {
     return () => {
       Object.keys(pollTimers.current).forEach(clearPoll);
@@ -260,7 +173,7 @@ export function Step4DataSources({ onNext, orgId }: Step4Props) {
               </div>
               <div className="relative z-10 pt-4 border-t border-outline-variant">
                 <button
-                  onClick={() => handleConnectClick(p.key)}
+                  onClick={() => initiateOAuthFlow(p.key)}
                   disabled={isLoading || isConnected || !orgId}
                   className={`w-full py-2 rounded-sm font-body-md font-medium transition-all flex items-center justify-center gap-2 ${
                     isConnected
@@ -299,14 +212,13 @@ export function Step4DataSources({ onNext, orgId }: Step4Props) {
         })}
 
         <div className="bg-surface-container-low border-2 border-dashed border-outline-variant rounded-sm p-5 flex flex-col items-center justify-center h-full hover:bg-surface-container transition-colors duration-300 cursor-pointer group min-h-[180px]">
-          <div className="w-10 h-10 bg-surface border-2 border-outline-variant rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <svg className="w-5 h-5 text-on-surface-variant group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </div>
-          <h3 className="font-headline-md text-base text-on-surface mb-1 text-center">Add Custom Source</h3>
+
+          <h3 className="font-headline-md text-base text-on-surface mb-1 text-center">Want more connectors?</h3>
           <p className="font-body-md text-sm text-on-surface-variant text-center">
-            Configure connection via standard JDBC/ODBC.
+            Open an issue at{" "}
+            <a href="https://github.com/Epein5/Cross-Check/issues" target="_blank" rel="noopener noreferrer" className="underline text-primary">
+              github.com/Epein5/Cross-Check/issues
+            </a>
           </p>
         </div>
       </div>
@@ -326,43 +238,6 @@ export function Step4DataSources({ onNext, orgId }: Step4Props) {
           </svg>
         </button>
       </div>
-
-      {modal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-surface border-2 border-outline-variant rounded-sm p-8 w-full max-w-md mx-4 shadow-[8px_8px_0px_0px_#4c5e85]">
-            <h2 className="font-headline-lg text-xl text-on-surface mb-2">Connect Databricks</h2>
-            <p className="font-body-md text-sm text-on-surface-variant mb-6">
-              Enter your Databricks workspace URL and access token.
-            </p>
-
-            <div className="flex flex-col gap-4 mb-6">
-              {modal.fields.map((field) => (
-                <div key={field.name}>
-                  <label className="font-label-mono text-xs text-on-surface-variant mb-1 block">{field.label}</label>
-                  <input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    value={formValues[field.name] || ""}
-                    onChange={(e) => setFormValues((prev) => ({ ...prev, [field.name]: e.target.value }))}
-                    className="w-full px-3 py-2 bg-surface-container-lowest border-2 border-outline-variant rounded-sm text-on-surface font-body-md focus:border-primary focus:outline-none transition-colors"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {formError && <p className="font-body-md text-sm text-error mb-4">{formError}</p>}
-
-            <div className="flex items-center justify-end gap-3">
-              <button onClick={() => setModal(null)} className="px-4 py-2 font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors">
-                Cancel
-              </button>
-              <button onClick={handleCredentialSubmit} className="px-6 py-2 bg-primary text-on-primary rounded-sm font-body-md font-medium hover:opacity-90 transition-opacity">
-                Connect
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
