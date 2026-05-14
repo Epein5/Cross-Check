@@ -1,65 +1,16 @@
 from fastapi import HTTPException, status
 from supabase import Client
 
-from core.config import settings
 from schemas.integrations import IntegrationResponse
 from services.composio_client import get_composio
 
 
-def _require_auth_config_id(platform: str, env_var: str) -> str:
-    value = getattr(settings, env_var, "")
-    if not value:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"{platform} is not configured. Set {env_var.upper()} in environment.",
-        )
-    return value
-
-
-def _initiate_bigquery(org_id: str, supabase: Client) -> tuple[str, str]:
+def _initiate_databricks(org_id: str, supabase: Client) -> tuple[str, str]:
     composio = get_composio()
     session = composio.create(user_id=str(org_id))
-    connection_request = session.authorize("googlebigquery")
-
-    _upsert_integration(org_id, "bigquery", connection_request.id, supabase)
-
+    connection_request = session.authorize("databricks")
+    _upsert_integration(org_id, "databricks", connection_request.id, supabase)
     return connection_request.redirect_url, connection_request.id
-
-
-def _initiate_snowflake(org_id: str, supabase: Client) -> tuple[str, str]:
-    composio = get_composio()
-    auth_config_id = _require_auth_config_id("Snowflake", "composio_auth_config_snowflake")
-
-    connection_request = composio.connected_accounts.link(
-        user_id=str(org_id),
-        auth_config_id=auth_config_id,
-    )
-
-    _upsert_integration(org_id, "snowflake", connection_request.id, supabase)
-
-    return connection_request.redirect_url, connection_request.id
-
-
-def _initiate_databricks(org_id: str, config: dict, supabase: Client) -> tuple[None, str]:
-    composio = get_composio()
-    auth_config_id = _require_auth_config_id("Databricks", "composio_auth_config_databricks")
-
-    account = composio.connected_accounts.initiate(
-        user_id=str(org_id),
-        auth_config_id=auth_config_id,
-        config={
-            "auth_scheme": "API_KEY",
-            "val": {
-                "status": "INITIALIZING",
-                "full": config["workspace_url"],
-                "generic_api_key": config["token"],
-            },
-        },
-    )
-
-    _upsert_integration(org_id, "databricks", account.id, supabase)
-
-    return None, account.id
 
 
 def _upsert_integration(org_id: str, platform: str, connection_id: str, supabase: Client) -> None:
@@ -90,22 +41,9 @@ def _upsert_integration(org_id: str, platform: str, connection_id: str, supabase
 def initiate_connection(
     org_id: str, platform: str, config: dict | None, supabase: Client
 ) -> tuple[str | None, str | None, str]:
-    if platform == "bigquery":
-        redirect_url, connection_id = _initiate_bigquery(org_id, supabase)
-        return redirect_url, connection_id, "redirect"
-
-    if platform == "snowflake":
-        redirect_url, connection_id = _initiate_snowflake(org_id, supabase)
-        return redirect_url, connection_id, "redirect"
-
     if platform == "databricks":
-        if not config or "workspace_url" not in config or "token" not in config:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Databricks requires workspace_url and token",
-            )
-        _, connection_id = _initiate_databricks(org_id, config, supabase)
-        return None, connection_id, "connected"
+        redirect_url, connection_id = _initiate_databricks(org_id, supabase)
+        return redirect_url, connection_id, "redirect"
 
     raise HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST,

@@ -7,27 +7,7 @@ from core.config import settings
 def _init_composio():
     try:
         from services.composio_client import get_composio
-        c = get_composio()
-
-        existing = {item.toolkit.slug: item for item in c.auth_configs.list().items}
-
-        if "databricks" not in existing:
-            from composio_client.types.auth_config_create_params import AuthConfigUnionMember1
-            c.auth_configs.create(
-                "databricks",
-                AuthConfigUnionMember1(
-                    type="use_custom_auth",
-                    auth_scheme="API_KEY",
-                    name="cross-check-databricks",
-                ),
-            )
-            print("Created Databricks API_KEY auth config")
-
-        if settings.composio_auth_config_snowflake:
-            sf_id = settings.composio_auth_config_snowflake
-            if sf_id not in {item.id for item in existing.values()}:
-                print(f"Warning: Snowflake OAuth auth config {sf_id} not found")
-
+        get_composio()
         print("Composio ready")
     except Exception as e:
         print(f"Composio init skipped: {e}")
