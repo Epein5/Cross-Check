@@ -55,9 +55,14 @@ async def verify_integration(
     user = await verify_bearer_token(credentials)
     status, connected_id = verify_connection(body.connection_id)
     if status == "ACTIVE" and connected_id and connected_id != body.connection_id:
-        supabase.table("organization_integrations").update(
+        result = supabase.table("organization_integrations").update(
             {"connection_id": connected_id}
         ).eq("connection_id", body.connection_id).eq("organization_id", org_id).execute()
+        if not result.data:
+            return VerifyConnectionResponse(
+                status=status,
+                connected_account_id=body.connection_id,
+            )
     return VerifyConnectionResponse(
         status=status,
         connected_account_id=connected_id,
