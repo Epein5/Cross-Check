@@ -211,16 +211,20 @@ export function Step4DataSources({ onNext, orgId }: Step4Props) {
           );
         })}
 
-        <div className="bg-surface-container-low border-2 border-dashed border-outline-variant rounded-sm p-5 flex flex-col items-center justify-center h-full hover:bg-surface-container transition-colors duration-300 cursor-pointer group min-h-[180px]">
-
+        <a
+          href="https://github.com/Epein5/Cross-Check/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-surface-container-low border-2 border-dashed border-outline-variant rounded-sm p-5 flex flex-col items-center justify-center h-full hover:bg-surface-container transition-colors duration-300 group min-h-[180px]"
+        >
           <h3 className="font-headline-md text-base text-on-surface mb-1 text-center">Want more connectors?</h3>
           <p className="font-body-md text-sm text-on-surface-variant text-center">
             Open an issue at{" "}
-            <a href="https://github.com/Epein5/Cross-Check/issues" target="_blank" rel="noopener noreferrer" className="underline text-primary">
+            <span className="underline text-primary">
               github.com/Epein5/Cross-Check/issues
-            </a>
+            </span>
           </p>
-        </div>
+        </a>
       </div>
 
       <div className="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant">
